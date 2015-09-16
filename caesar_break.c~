@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int isintab(char c, char chars[26]){ //returns -1 for not in tab or the indice in the tab
+int isintab(char c, char chars[26], int nb){ //returns -1 for not in tab or the indice in the tab
 	int i;
-	for(i=0;i<26;i++){
+	for(i=0;i<nb;i++){
 		if(chars[i] == c){
 			return i;
 		}
@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
 	int nb_ap[NB_ALPHA];
 	int nb_elem = 0;
 	while ((i = fgetc(stdin)) != EOF) {
-		int indice = isintab(i, chars);
+		int indice = isintab(i, chars, nb_elem);
 		if(indice >= 0){
 			nb_ap[indice] ++;
 		}

@@ -1,3 +1,5 @@
+/* Why does it count an enter at the end ? */
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -17,18 +19,30 @@ int main(int argc, char *argv[]) {
 	char chars[NB_ALPHA];
 	int nb_ap[NB_ALPHA];
 	int nb_elem = 0;
+	for(j = 0;j<NB_ALPHA;j++){
+		chars[j]=' ';
+		nb_ap[j]=0;
+	}
 	while ((i = fgetc(stdin)) != EOF) {
 		int indice = isintab(i, chars, nb_elem);
+		printf("Next character ");
 		if(indice >= 0){
 			nb_ap[indice] ++;
+			printf("is already known\n");
 		}
 		else{
+			printf("is brand new\n");
 			chars[nb_elem] = i;
-			nb_ap[indice] = 1;
+			nb_ap[nb_elem] = 1;
 			nb_elem++;
 		}
+		for(j = 0;j<nb_elem;j++){
+			printf("'%c' ",chars[j]);
+			printf("%d\n",nb_ap[j]);
+		}
 	}
-	for(j = 0;j<40;j++){
+	printf("nb elem = %d\n",nb_elem);
+	for(j = 0;j<nb_elem;j++){
 		printf("'%c' ",chars[j]);
 		printf("%d\n",nb_ap[j]);
 	}
