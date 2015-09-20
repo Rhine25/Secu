@@ -3,15 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int isintab(char c, char chars[26], int nb){ //returns -1 for not in tab or the indice in the tab
-	int i;
-	for(i=0;i<nb;i++){
-		if(chars[i] == c){
-			return i;
-		}
-	}
-	return -1;
-}
+#include "tabs.h"
 
 int main(int argc, char *argv[]) {
 	int i,j;
@@ -19,37 +11,38 @@ int main(int argc, char *argv[]) {
 	char chars[NB_ALPHA];
 	int nb_ap[NB_ALPHA];
 	int nb_elem = 0;
-	for(j = 0;j<NB_ALPHA;j++){
-		chars[j]=' ';
-		nb_ap[j]=0;
-	}
+	
 	while ((i = fgetc(stdin)) != EOF) {
-		int indice = isintab(i, chars, nb_elem);
-		printf("Next character ");
-		if(indice >= 0){
-			nb_ap[indice] ++;
-			printf("is already known\n");
-		}
-		else{
-			printf("is brand new\n");
-			chars[nb_elem] = i;
-			nb_ap[nb_elem] = 1;
-			nb_elem++;
-		}
-		for(j = 0;j<nb_elem;j++){
-			printf("'%c' ",chars[j]);
-			printf("%d\n",nb_ap[j]);
+		if(i != ' '){
+			int indice = isintab(i, chars, nb_elem);
+			if(indice >= 0){
+				nb_ap[indice] ++;
+			}
+			else{
+				chars[nb_elem] = i;
+				nb_ap[nb_elem] = 1;
+				nb_elem++;
+			}
 		}
 	}
-	printf("nb elem = %d\n",nb_elem);
+	
+	int max_nb_ap = 0;
+	int indice_max_nb_ap;
 	for(j = 0;j<nb_elem;j++){
 		printf("'%c' ",chars[j]);
 		printf("%d\n",nb_ap[j]);
+		if(nb_ap[j] > max_nb_ap){
+			max_nb_ap = nb_ap[j];
+			indice_max_nb_ap = j;
+		}
 	}
-		
-		// chercher la lettre avec le plus grand nombre d'apparitions
-		// trouver nombre pour que cette lettre - nombre = E
-		// décrypter avec la clé trouvée
+	printf("Letter most used is : %c\n",chars[indice_max_nb_ap]);
+	
+	int key = chars[indice_max_nb_ap] - 'E';
+	printf("La clé est : %d\n",key);
+	
+	
+	// décrypter avec la clé trouvée
 }
 
 
