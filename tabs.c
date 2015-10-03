@@ -1,3 +1,6 @@
+#include "tabs.h"
+
+
 int isintab(char c, char chars[26], int nb){ //returns -1 for not in tab or the indice in the tab
 	int i;
 	for(i=0;i<nb;i++){

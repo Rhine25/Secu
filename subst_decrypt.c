@@ -5,19 +5,13 @@
 #include "tabs.h"
 
 int main(int argc, char *argv[]) {
-	if(argc != 2){
-		fprintf(stderr,"Need one parameter\n");
-		return 1;
-	}
 	
 	const int LENGTH = 26;
-	
 	char key[LENGTH];
 	int j;
 	for(j = 0; j<LENGTH;j++){
 		key[j] = ' ';
 	}
-	
 	
 	//complète la première partie de la clé à partir du mot
 	key[0] = argv[1][0];
@@ -42,11 +36,6 @@ int main(int argc, char *argv[]) {
 		}
 	}
 	
-	//affiche la clé
-	for(j = 0; j<LENGTH;j++){
-		printf("%c ",key[j]);
-	}
-	
 	int i;
 	unsigned char c;
 	while ((i = fgetc(stdin)) != EOF) {
@@ -54,9 +43,10 @@ int main(int argc, char *argv[]) {
 			c = i;
 		}
 		else{
-			c = (unsigned char) key[i-65];
+			c = (unsigned char) isintab(i, key, LENGTH)+65;
 		}
 		printf("%c", c);
 	}
+	
 	return 0;
 }
