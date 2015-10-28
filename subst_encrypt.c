@@ -42,15 +42,10 @@ int main(int argc, char *argv[]) {
 		}
 	}
 	
-	//affiche la clé
-	for(j = 0; j<LENGTH;j++){
-		printf("%c ",key[j]);
-	}
-	
 	int i;
 	unsigned char c;
 	while ((i = fgetc(stdin)) != EOF) {
-		if(i == ' '){
+		if(i < 65 || i > 91){
 			c = i;
 		}
 		else{

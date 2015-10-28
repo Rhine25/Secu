@@ -1,18 +1,18 @@
-/* Why does it count an enter at the end ? */
-
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "tabs.h"
 
 int main(int argc, char *argv[]) {
 	int i,j;
 	const int NB_ALPHA = 26;
-	char chars[NB_ALPHA];
-	int nb_ap[NB_ALPHA];
-	int nb_elem = 0;
+	char chars[NB_ALPHA]; // lettres dans l'ordre d'apparition
+	int nb_ap[NB_ALPHA]; // nombre d'apparitions par lettre
+	int nb_elem = 0; // compteur de lettres
 	
 	while ((i = fgetc(stdin)) != EOF) {
+		
 		if(i != ' '){
 			int indice = isintab(i, chars, nb_elem);
 			if(indice >= 0){
@@ -41,8 +41,6 @@ int main(int argc, char *argv[]) {
 	int key = chars[indice_max_nb_ap] - 'E';
 	printf("La clé est : %d\n",key);
 	
-	
-	// décrypter avec la clé trouvée
 	return 0;
 }
 
