@@ -44,15 +44,10 @@ int main(int argc, char *argv[]) {
 	char decrypt[NB_ALPHA];
 	
 	char choice;
-	//scanf("%c", &choice);
-	//choice = 'n';
-	printf("scanf '%d'",scanf(" %c",&choice));
-	printf("%c\n", choice);
-	/*do{
+	do{
 		printf("Manuel ou Automatique ? : ");
-		scanf("%1s",&choice);
-		//printf("%c\n", choice);
-	}while(choice != 'M' && choice != 'A');*/
+		scanf("%c",&choice);
+	}while(choice != 'M' && choice != 'A');
 	
 	/*if(percentage[0] <= 16.0f && percentage[0] >= 12.0f){
 		decrypt[0] = 'E';
