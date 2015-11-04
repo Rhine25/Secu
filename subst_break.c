@@ -6,6 +6,12 @@
 #include "tabs.h"
 //TODO finir décrypter afficher le texte décrypté
 int main(int argc, char *argv[]) {
+	
+	if(argc < 2){
+		fprintf(stderr,"Need file location");
+		return 1;
+	}
+	
 	couleur("0");
 	int i;
 	const int NB_ALPHA = 26;
@@ -17,7 +23,7 @@ int main(int argc, char *argv[]) {
 	
 	char texte[500000];
 	
-	FILE* fp = fopen("ciphertext","r");
+	FILE* fp = fopen(argv[1],"r");
 	while ((i = fgetc(fp)) != EOF) {
 		printf("%c",i);
 		texte[textLength] = i;
